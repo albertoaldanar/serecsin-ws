@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :accept_all_params
+  # before_action :accept_all_params
 
   def all_users
     @users = User.all
@@ -7,16 +7,17 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create_user
-    @user = User.new(accept_all_params)
-    @user.save
+    @user = User.new(require_params)
 
-    render json: {
-      "user": @user
-    }
+    if @user.save
+      render json: { "user": @user}, status: :ok
+    else
+      render json: { error: @user.errors, is_success: false}, status: 422
+    end
   end
 
   private
-  def accept_all_params
-    params.permit!
+  def require_params
+    params.require(:user).permit(:username, :email, :password)
   end
 end
