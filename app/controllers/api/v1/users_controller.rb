@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  # before_action :accept_all_params
+  # before_action :require_params
 
   def all_users
     @users = User.all
@@ -17,13 +17,18 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def login
-    user = User.where(username: params[:username])
+    if params[:username] || params[:password]
+      @user = User.where(username: params[:username], password: params[:password])
 
-    # if "nelsemedo" == params[:username]
-      render json: { "user": user, "response": "SUCCESS"}, status: :ok
-    # else
-    #   render json: { "response": "Invalid credentials"}, status: 422
-    # end
+      if @user.count == 0
+          render json: { "response": "Invalid credentials"}, status: 422
+
+      else
+          render json: { "user": @user, "response": "SUCCESS"}, status: :ok
+      end
+    else
+      render json: {"response": "No credentials given"}, status: :ok
+    end
   end
 
   private

@@ -10,10 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_203544) do
+ActiveRecord::Schema.define(version: 2020_09_13_183943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "routes", force: :cascade do |t|
+    t.integer "year"
+    t.string "bus"
+    t.string "gas"
+    t.string "helper"
+    t.string "helper_b"
+    t.string "km"
+    t.integer "mes"
+    t.datetime "start"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "done"
+    t.string "lt_done"
+    t.index ["user_id"], name: "index_routes_on_user_id"
+  end
+
+  create_table "stops", force: :cascade do |t|
+    t.datetime "arrived_at"
+    t.integer "year"
+    t.string "client"
+    t.string "comments"
+    t.string "contact"
+    t.string "email"
+    t.datetime "finished_at"
+    t.float "lat"
+    t.float "lng"
+    t.integer "mes"
+    t.string "phone"
+    t.bigint "route_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "photos", default: [], array: true
+    t.text "signature"
+    t.index ["route_id"], name: "index_stops_on_route_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -23,4 +60,6 @@ ActiveRecord::Schema.define(version: 2020_09_12_203544) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "routes", "users"
+  add_foreign_key "stops", "routes"
 end

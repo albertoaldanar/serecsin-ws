@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: 1
+  bus: MyString
+  gas: MyString
+  helper: MyString
+  helper_b: MyString
+  km: MyString
+  mes: 1
+  start: 2020-09-12 21:14:56
+  user: one
+
+two:
+  year: 1
+  bus: MyString
+  gas: MyString
+  helper: MyString
+  helper_b: MyString
+  km: MyString
+  mes: 1
+  start: 2020-09-12 21:14:56
+  user: two
