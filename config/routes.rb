@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api, defautls: {format: :json} do
     namespace :v1 do
       get '/users' => 'users#all_users'
+      get '/login' => 'users#login'
       post '/create_user' => 'users#create_user'
       # post '/create_route' => 'route#create_route'
       # post '/payments' => 'users#add_card'

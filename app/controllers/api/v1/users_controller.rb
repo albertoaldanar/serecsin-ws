@@ -10,9 +10,19 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(require_params)
 
     if @user.save
-      render json: { "user": @user}, status: :ok
+      render json: { "user": @user, "response": "SUCCESS"}, status: :ok
     else
       render json: { error: @user.errors, is_success: false}, status: 422
+    end
+  end
+
+  def login
+    @user = User.where(username: params[:username])
+
+    if @user.password == params[:password]
+      render json: { "user": @user, "response": "SUCCESS"}, status: :ok
+    else
+      render json: { "response": "Invalid credentials"}, status: 422
     end
   end
 
