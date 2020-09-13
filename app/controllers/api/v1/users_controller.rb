@@ -17,7 +17,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def login
-    user = User.where(username: params[:username], email: "nel@semedo.com")
+    user = User.where(username: params[:username])
 
     # if "nelsemedo" == params[:username]
       render json: { "user": user, "response": "SUCCESS"}, status: :ok
