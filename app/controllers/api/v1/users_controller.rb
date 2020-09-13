@@ -7,7 +7,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create_user
-    @user = User.create!(accept_all_params)
+    @user = User.new(accept_all_params)
+    @user.save
+
     render json: {
       "user": @user
     }
