@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
   def login
     @user = User.where(username: params[:username])
 
-    if @user.password == "nelsemedo"
+    if "nelsemedo" == params[:password]
       render json: { "user": @user, "response": "SUCCESS"}, status: :ok
     else
       render json: { "response": "Invalid credentials"}, status: 422
