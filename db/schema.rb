@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_183943) do
+ActiveRecord::Schema.define(version: 2020_09_18_051313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_183943) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "photos", default: [], array: true
     t.text "signature"
+    t.string "gas"
     t.index ["route_id"], name: "index_stops_on_route_id"
   end
 
