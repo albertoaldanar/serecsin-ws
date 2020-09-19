@@ -10,6 +10,12 @@ class Api::V1::StopsController < ApplicationController
     end
   end
 
+  def all_stops
+    @stops = Stop.all
+    render json: {"stops": @stops}
+  end
+
+
   def get_stops
     @stops = Stop.where(route_id: params[:id])
     render json: { "stops": @stops, "response": "SUCCESS"}, status: :ok

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post '/finish_route' => 'routes#finish_route'
       post '/create_stop' => 'stops#create_stop'
       post '/get_stops' => 'stops#get_stops'
+      post '/all_stops' => 'stops#all_stops'
       # post '/payments' => 'users#add_card'
       # get '/listings' => 'rooms#your_listings'
       # get '/users' => 'users#all_users'
