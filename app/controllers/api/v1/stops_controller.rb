@@ -15,6 +15,12 @@ class Api::V1::StopsController < ApplicationController
     render json: {"stops": @stops}
   end
 
+  def delete_stops
+    @stops = Stop.destroy_all
+
+    render json: {"stops": @stops}
+  end
+
 
   def get_stops
     @stops = Stop.where(route_id: params[:id])
