@@ -24,7 +24,14 @@ class Api::V1::StopsController < ApplicationController
 
   def get_stops
     @stops = Stop.where(route_id: params[:id])
-    render json: { "stops": @stops, "response": "SUCCESS"}, status: :ok
+
+    stops_response = []
+
+    @stops.each do |stop|
+      stops_response << {"client": stop.client, "lat": stop.lat, "lng": stop.lng}
+    end
+
+    render json: { "stops": stops_response, "response": "SUCCESS"}, status: :ok
   end
 
   private
