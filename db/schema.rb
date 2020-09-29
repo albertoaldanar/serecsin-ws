@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_18_051313) do
+ActiveRecord::Schema.define(version: 2020_09_29_183936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_09_18_051313) do
     t.text "photos", default: [], array: true
     t.text "signature"
     t.string "gas"
+    t.boolean "fail"
     t.index ["route_id"], name: "index_stops_on_route_id"
   end
 
