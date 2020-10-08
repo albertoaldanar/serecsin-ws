@@ -22,13 +22,23 @@ class Api::V1::StopsController < ApplicationController
   end
 
 
+  def filtered_stops
+
+      stops = Stop.where(
+        "mes = ? AND year = ? AND client != ? AND client != ? AND client != ? ",
+        params[:mes], params[:year], "GASOLINA", "INCIDENTE", "BASURA"
+      )
+
+    render json: {"stops": stops}
+  end
+
   def get_stops
     @stops = Stop.where(route_id: params[:id])
 
     stops_response = []
 
     @stops.each do |stop|
-      stops_response << {"client": stop.client, "lat": stop.lat, "lng": stop.lng}
+      stops_response << { "client": stop.client, "lat": stop.lat, "lng": stop.lng }
     end
 
     render json: { "stops": stops_response, "response": "SUCCESS"}, status: :ok

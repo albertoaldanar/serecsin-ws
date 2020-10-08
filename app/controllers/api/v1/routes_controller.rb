@@ -20,6 +20,7 @@ class Api::V1::RoutesController < ApplicationController
     end
   end
 
+
   private
   def require_params
     params.require(:route).permit!

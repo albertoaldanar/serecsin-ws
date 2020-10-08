@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       post '/get_stops' => 'stops#get_stops'
       post '/all_stops' => 'stops#all_stops'
       post '/delete_stops' => 'stops#delete_stops'
+      post '/filtered_stops' => 'stops#filtered_stops'
+      post '/edit_user' => 'users#edit_user'
       # get '/listings' => 'rooms#your_listings'
       # get '/users' => 'users#all_users'
       # post '/create_movie' => 'movies#create'

@@ -31,6 +31,13 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def edit_user
+    user = User.find(params[:id])
+    user.update!(require_params)
+
+    render json: { "user_updated": user, "response": "SUCCESS" }
+  end
+
   private
   def require_params
     params.require(:user).permit(:username, :email, :password)
