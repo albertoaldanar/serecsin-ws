@@ -24,10 +24,16 @@ class Api::V1::StopsController < ApplicationController
 
   def filtered_stops
 
+    if params[:search] == "month"
       stops = Stop.where(
         "mes = ? AND year = ? AND client != ? AND client != ? AND client != ? ",
         params[:mes], params[:year], "GASOLINA", "INCIDENTE", "BASURA"
       )
+
+    elsif params[:search] == "day"
+      stops = Stop.where( "day = ?", params[:day] )
+
+    end
 
     render json: {"stops": stops}
   end

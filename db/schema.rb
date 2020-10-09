@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_055955) do
+ActiveRecord::Schema.define(version: 2020_10_09_034540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,17 @@ ActiveRecord::Schema.define(version: 2020_10_08_055955) do
     t.text "signature"
     t.string "gas"
     t.boolean "fail"
+    t.date "day"
     t.index ["route_id"], name: "index_stops_on_route_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "client"
+    t.date "day"
+    t.integer "order", default: 0
+    t.boolean "done"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
