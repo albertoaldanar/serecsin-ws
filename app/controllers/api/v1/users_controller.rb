@@ -31,6 +31,18 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+
+  # def delete_user
+  #   user = User.find(params[:id])
+
+  #   if user.destroy
+  #     render json: { "response": "SUCCESS" }
+  #   else
+  #     render json: { "response": "ERROR" }
+  #   end
+
+  # end
+
   def edit_user
     user = User.find(params[:id])
     user.update!(require_params)
@@ -40,6 +52,6 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def require_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :user_type, :access)
   end
 end
