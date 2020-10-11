@@ -28,7 +28,6 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def filtered_tasks
-
     tasks = Task.where( "day = ?", params[:day] )
 
     render json: {"tasks": tasks}
