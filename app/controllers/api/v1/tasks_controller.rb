@@ -24,7 +24,6 @@ class Api::V1::TasksController < ApplicationController
     else
       render json: { "response": "ERROR" }
     end
-
   end
 
   def filtered_tasks
@@ -40,9 +39,41 @@ class Api::V1::TasksController < ApplicationController
     render json: {"tasks": tasks}
   end
 
-  private
-  def require_params
-    params.require(:task).permit!
+
+  def create_multiple_tasks
+
+    tasks = params[:tasks]
+
+    task_array = []
+
+    # tasks.each do |task|
+    #   task_array << {"client": task.client, "day": task.day}
+    # end
+
+    # print("task arrayyyy =>", task_array)
+
+    Task.create(require_params)
+
+    render json: {"response": tasks}
   end
+
+  def delete_multiple_tasks
+    tasks = Task.where(day: params[:day])
+
+    if tasks.delete_all
+      render json: {"response": "SUCCESS"}
+    else
+      render json: {"response": "ERROR"}
+    end
+  end
+
+  private
+    def require_params
+      params.require(:task).permit!
+    end
+
+    def require_multiple_params
+      params.require(:task).permit!
+    end
 
 end
