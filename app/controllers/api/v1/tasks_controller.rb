@@ -46,15 +46,13 @@ class Api::V1::TasksController < ApplicationController
 
     task_array = []
 
-    # tasks.each do |task|
-    #   task_array << {"client": task.client, "day": task.day}
-    # end
+    tasks.each do |task|
+      task_array << {"client": task["client"], "day": task["day"]}
+    end
 
-    # print("task arrayyyy =>", task_array)
+    Task.create(task_array)
 
-    Task.create(require_params)
-
-    render json: {"response": tasks}
+    render json: {"tasks": task_array, "response": "SUCCESS"}
   end
 
   def delete_multiple_tasks
