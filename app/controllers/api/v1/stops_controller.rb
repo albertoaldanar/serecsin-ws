@@ -21,18 +21,16 @@ class Api::V1::StopsController < ApplicationController
     render json: {"stops": @stops}
   end
 
-
   def filtered_stops
 
-    if params[:search] == "month"
+    if params[:search] == "client"
       stops = Stop.where(
         "mes = ? AND year = ? AND client != ? AND client != ? AND client != ? ",
         params[:mes], params[:year], "GASOLINA", "INCIDENTE", "BASURA"
       )
 
-    elsif params[:search] == "day"
+    elsif params[:search] == "route"
       stops = Stop.where( "day = ?", params[:day] )
-
     end
 
     render json: {"stops": stops}
@@ -49,6 +47,7 @@ class Api::V1::StopsController < ApplicationController
 
     render json: { "stops": stops_response, "response": "SUCCESS"}, status: :ok
   end
+
 
   private
   def require_params
