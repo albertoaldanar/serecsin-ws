@@ -24,26 +24,38 @@ class Api::V1::StopsController < ApplicationController
   def filtered_stops
 
     if params[:search] == "client"
-      stps = Stop.where(
+      stops = Stop.where(
         "mes = ? AND year = ? AND client != ? AND client != ? AND client != ? ",
         params[:mes], params[:year], "GASOLINA", "INCIDENTE", "BASURA"
-      )
+      ).group_by { |x| x.client }
 
-      stops = {}
 
-      stps.each do |t|
-          stops[t.client] = [
-              {
-                comments: t.comments,
-                hour: t.created_at,
-                photos: t.photos,
-                signature: t.signature,
-                day: t.day,
-                fail: t.fail,
-                gas: t.gas,
-              }
-          ]
-      end
+      # h = Foo.all.group_by { |x| x.bar }
+      # h.each {|key, value| value.each {|foo| puts foo['bar'] }}
+
+      # Event
+      # .order(:popularity)
+      # .joins(:keywords)
+      # .group('events.id') # <======
+      # .where(keywords: { category: 'taxonomy' })
+      # .group('keywords.name')
+
+      # stops = {}
+      # stops
+
+      # stps.each do |t|
+      #     stops[t.client] = [
+      #         {
+      #           comments: t.comments,
+      #           hour: t.created_at,
+      #           photos: t.photos,
+      #           signature: t.signature,
+      #           day: t.day,
+      #           fail: t.fail,
+      #           gas: t.gas,
+      #         }
+      #     ]
+      # end
 
     elsif params[:search] == "route"
       stops = Stop.where( "day = ?", params[:day] )
