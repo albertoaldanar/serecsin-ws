@@ -27,7 +27,7 @@ class Api::V1::StopsController < ApplicationController
       stps = Stop.where(
         "mes = ? AND year = ? AND client != ? AND client != ? AND client != ? ",
         params[:mes], params[:year], "GASOLINA", "INCIDENTE", "BASURA"
-      ).group(:id)
+      )
 
       stops = {}
 
