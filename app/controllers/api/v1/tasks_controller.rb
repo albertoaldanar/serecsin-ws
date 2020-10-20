@@ -55,6 +55,12 @@ class Api::V1::TasksController < ApplicationController
     render json: {"tasks": task_array, "response": "SUCCESS"}
   end
 
+  def delete_tasks
+    @tasks = Task.destroy_all
+
+    render json: {"tasks": @tasks}
+  end
+
   def delete_multiple_tasks
     tasks = Task.where(day: params[:day])
 

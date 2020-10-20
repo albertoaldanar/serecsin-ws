@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       post '/create_task' => 'tasks#create_task'
       post '/edit_task' => 'tasks#edit_task'
       post '/delete_task' => 'tasks#delete_task'
+      post '/delete_tasks' => 'tasks#delete_tasks'
       post '/filtered_tasks' => 'tasks#filtered_tasks'
       post '/create_multiple_tasks' => 'tasks#create_multiple_tasks'
       post '/all_tasks' => 'tasks#all_tasks'
