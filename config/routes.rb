@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post '/delete_user' => 'users#delete_user'
       post '/create_route' => 'routes#create_route'
       post '/finish_route' => 'routes#finish_route'
+      post '/delete_routes' => 'routes#delete_routes'
       post '/create_stop' => 'stops#create_stop'
       post '/get_stops' => 'stops#get_stops'
       post '/all_stops' => 'stops#all_stops'

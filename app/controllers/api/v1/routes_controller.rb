@@ -21,6 +21,13 @@ class Api::V1::RoutesController < ApplicationController
   end
 
 
+  def delete_routes
+    @routes = Route.destroy_all
+
+    render json: {"routes": @routes}
+  end
+
+
   private
   def require_params
     params.require(:route).permit!
