@@ -32,16 +32,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
 
-  # def delete_user
-  #   user = User.find(params[:id])
+  def delete_user
+    @users = User.destroy_all
 
-  #   if user.destroy
-  #     render json: { "response": "SUCCESS" }
-  #   else
-  #     render json: { "response": "ERROR" }
-  #   end
-
-  # end
+    render json: {"users": @users}
+  end
 
   def edit_user
     user = User.find(params[:id])
