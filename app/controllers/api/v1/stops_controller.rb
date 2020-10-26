@@ -39,33 +39,23 @@ class Api::V1::StopsController < ApplicationController
         params[:mes], params[:year], "GASOLINA", "INCIDENTE", "BASURA"
       ).group_by { |x| x.client }
 
+    elsif params[:search] == "basura"
+      stops = Stop.where(
+        "mes = ? AND year = ? AND client = ?",
+        params[:mes], params[:year], "BASURA"
+      ).group_by { |x| x.client }
 
-      # h = Foo.all.group_by { |x| x.bar }
-      # h.each {|key, value| value.each {|foo| puts foo['bar'] }}
+    elsif params[:search] == "gasolina"
+      stops = Stop.where(
+        "mes = ? AND year = ? AND client = ?",
+        params[:mes], params[:year], "GASOLINA"
+      ).group_by { |x| x.client }
 
-      # Event
-      # .order(:popularity)
-      # .joins(:keywords)
-      # .group('events.id') # <======
-      # .where(keywords: { category: 'taxonomy' })
-      # .group('keywords.name')
-
-      # stops = {}
-      # stops
-
-      # stps.each do |t|
-      #     stops[t.client] = [
-      #         {
-      #           comments: t.comments,
-      #           hour: t.created_at,
-      #           photos: t.photos,
-      #           signature: t.signature,
-      #           day: t.day,
-      #           fail: t.fail,
-      #           gas: t.gas,
-      #         }
-      #     ]
-      # end
+    elsif params[:search] == "incidente"
+      stops = Stop.where(
+        "mes = ? AND year = ? AND client = ?",
+        params[:mes], params[:year], "INCIDENTE"
+      ).group_by { |x| x.client }
 
     elsif params[:search] == "route"
       stops = Stop.where( "day = ?", params[:day] )
