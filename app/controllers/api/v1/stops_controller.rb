@@ -21,6 +21,16 @@ class Api::V1::StopsController < ApplicationController
     render json: {"stops": @stops}
   end
 
+  def delete_stop
+    stop = Stop.find(params[:id])
+
+    if stop.destroy
+      render json: { "response": "SUCCESS" }
+    else
+      render json: { "response": "ERROR" }
+    end
+  end
+
   def filtered_stops
 
     if params[:search] == "client"

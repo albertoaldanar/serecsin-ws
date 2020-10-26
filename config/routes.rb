@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post '/get_stops' => 'stops#get_stops'
       post '/all_stops' => 'stops#all_stops'
       post '/delete_stops' => 'stops#delete_stops'
+      post '/delete_stop' => 'stops#delete_stop'
       post '/filtered_stops' => 'stops#filtered_stops'
       post '/create_task' => 'tasks#create_task'
       post '/edit_task' => 'tasks#edit_task'
